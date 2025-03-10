@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Menu, MenuItem, InputBase, Button, Box, Badge, IconButton } from '@mui/material';
+import { AppBar, Toolbar, Typography,createTheme, Menu, MenuItem, InputBase, Button, Box, Badge, IconButton, ThemeProvider } from '@mui/material';
 import { Search, ExpandMore, Home, Favorite, ShoppingCart, AccountCircle } from '@mui/icons-material';
 
 // Import your logo image
@@ -35,9 +35,13 @@ const Navbar = () => {
     setSelectedCategory(category);
     handleCategoryMenuClose();
   };
-
+const theme = createTheme({
+    typography: {
+        fontFamily: "'Ubuntu', sans-serif",
+        fontSize:10
+    },})
   return (
-    <AppBar
+    <ThemeProvider theme={theme}
       position="sticky"
       sx={{
         backgroundColor: 'transparent',
@@ -156,7 +160,7 @@ const Navbar = () => {
           borderBottom: '4px solid #1ed14b',
         }}
       />
-    </AppBar>
+    </ThemeProvider>
   );
 };
 
