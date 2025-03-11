@@ -1,7 +1,5 @@
 import React from "react";
-import {
-    Card, CardContent, Grid, ThemeProvider, Typography, createTheme
-} from "@mui/material";
+import { Card, CardContent, Grid, ThemeProvider, Typography, createTheme } from "@mui/material";
 
 // Create a theme with Ubuntu font
 const theme = createTheme({
@@ -14,22 +12,28 @@ const theme = createTheme({
 function Home() {
     return (
         <ThemeProvider theme={theme}>
-            {/* First Grid container */}
+            {/* Parent Grid - Full Screen Width */}
             <Grid
                 container
                 spacing={4}
-                justifyContent="center" // Horizontally center the grid items
-                alignItems="center" // Vertically center the grid items
-                sx={{ margin: 0, padding: 0 }}
+                justifyContent="center" // Horizontally center all grid items
+                alignItems="center" // Vertically center items based on content height
+                sx={{
+                    width: "100vw", // Full screen width
+                    margin: 0,
+                    padding: 2,
+                    backgroundColor: "#f5f5f5" // Optional background color
+                }}
             >
+                {/* First Row */}
                 <Grid item xs={12} sm={8} md={6} lg={4}>
                     <Card sx={{ width: '100%' }}>
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
+                            <Typography gutterBottom variant="h5">
                                 Man
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                                List on man category will be displayed here
+                                List on man category will be displayed here.
                             </Typography>
                         </CardContent>
                     </Card>
@@ -37,7 +41,7 @@ function Home() {
                 <Grid item xs={12} sm={8} md={6} lg={4}>
                     <Card sx={{ width: '100%' }}>
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
+                            <Typography gutterBottom variant="h5">
                                 Women
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
@@ -46,10 +50,10 @@ function Home() {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={8} md={6} lg={3.54}>
+                <Grid item xs={12} sm={8} md={6} lg={4}>
                     <Card sx={{ width: '100%' }}>
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
+                            <Typography gutterBottom variant="h5">
                                 Electronic
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
@@ -58,24 +62,16 @@ function Home() {
                         </CardContent>
                     </Card>
                 </Grid>
-            </Grid>
 
-            {/* Second Grid container */}
-            <Grid
-                container
-                spacing={4}
-                justifyContent="center" // Horizontally center the grid items
-                alignItems="center" // Vertically center the grid items
-                sx={{ margin: 0, padding: 0 }}
-            >
+                {/* Second Row */}
                 <Grid item xs={12} sm={8} md={6} lg={4}>
                     <Card sx={{ width: '100%' }}>
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
+                            <Typography gutterBottom variant="h5">
                                 Kids
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                                Kids on man category will be displayed here
+                                Kids category will be displayed here.
                             </Typography>
                         </CardContent>
                     </Card>
@@ -83,7 +79,7 @@ function Home() {
                 <Grid item xs={12} sm={8} md={6} lg={4}>
                     <Card sx={{ width: '100%' }}>
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
+                            <Typography gutterBottom variant="h5">
                                 Home and Furniture
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
@@ -92,26 +88,34 @@ function Home() {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={8} md={6} lg={3.54}>
+                <Grid item xs={12} sm={8} md={6} lg={4}>
                     <Card sx={{ width: '100%' }}>
                         <CardContent
                             sx={{
                                 display: 'flex',
                                 flexDirection: 'column',
-                                justifyContent: 'center', // Vertically center the content
-                                alignItems: 'center', // Horizontally center the content
-                                textAlign: 'center' // Ensure the text is centered horizontally
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                textAlign: 'center'
                             }}
                         >
-                            <Typography gutterBottom variant="h5" component="div">
+                            <Typography gutterBottom variant="h5">
                                 Pets
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
                                 Pets will be displayed here.
                             </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                Pets will be displayed here.
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                Pets will be displayed here.
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                Pets will be displayed here.
+                            </Typography>          
                         </CardContent>
                     </Card>
-
                 </Grid>
             </Grid>
         </ThemeProvider>
