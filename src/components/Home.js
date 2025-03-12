@@ -1,6 +1,22 @@
 import React from "react";
+import tshirt from "../assets/Images/man/t-shirt.png";
+import tshirt1 from "../assets/Images/man/t-shist1.png";
+import jacket from "../assets/Images/man/jacket.png";
+import shoe from "../assets/Images/man/shoes.png";
+import shoe1 from "../assets/Images/man/shoes2.png";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
+
+// Import MUI components    
 import {
-    Card, CardContent, Grid, ThemeProvider, Typography, createTheme, Box
+    Card, CardContent, Grid, ThemeProvider, Typography, createTheme, Box,
+    Button
 } from "@mui/material";
 
 // Create a theme with Ubuntu font
@@ -11,109 +27,117 @@ const theme = createTheme({
     },
 });
 
+const man_display = [
+    { id: 1, image: tshirt, brand: "Puma", description: "This is the new product from Puma", price: '$100' },
+    { id: 2, image: tshirt1, brand: "Gucci", description: "This is the new product from Gucci", price: '$200' },
+    { id: 3, image: jacket, brand: "Louis Vuitton", description: "This is the new product from Louis Vuitton", price: '$1520' },
+    { id: 4, image: shoe, brand: "Adidas", description: "This is the new product from Adidas", price: '$600' },
+    { id: 5, image: shoe1, brand: "Nike", description: "This is the new product from Nike", price: '$100' }
+];
+
 function Home() {
     return (
         <ThemeProvider theme={theme}>
-            <Box sx={{ marginLeft: "0px", width: "calc(100% - 20px)" }}> {/* Add left margin */}
+            <Box sx={{ width: "90%", minHeight: "100vh", margin: '5%', border: "none", overflow: "visible", display: "flex", flexDirection: "column", gap: 4 }}>
+
                 {/* First Grid container */}
-                <Grid
-                    container
-                    spacing={4}
-                    justifyContent="center" // Horizontally center the grid items
-                    alignItems="center" // Vertically center the grid items
-                    sx={{ margin: 0, padding: 0 }}
-                >
+                <Grid container spacing={4} justifyContent="center" alignItems="center" border="none">
                     <Grid item xs={12} sm={8} md={6} lg={4}>
-                        <Card sx={{ width: '100%' }}>
+                        <Card sx={{ width: '100%', border: "none" }}>
                             <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Man
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    List on man category will be displayed here
-                                </Typography>
+                                <Typography gutterBottom variant="h5" sx={{paddingLeft:"20%", fontWeight:"bold"}} component="div">Man</Typography>
+                                <br/>
+                                <Swiper
+                                    modules={[Navigation, Pagination, Autoplay]}
+                                                                       pagination={{ clickable: true }}
+                                    loop
+                                    autoplay={{ delay: 3000, disableOnInteraction: true }}
+                                    style={{ marginBottom: "20px" }}
+                                >
+                                    {man_display.map((slide) => (
+                                        <SwiperSlide key={slide.id}>
+                                            <Box sx={{
+                                                width: "100%",
+                                                height: "400px",
+                                                position: "relative",
+                                                overflow: "hidden",
+                                            }}>
+                                                <img src={slide.image} alt={slide.description}
+                                                    style={{
+                                                        width: "80%", // Adjust the percentage as needed
+                                                        height: "200px", // Set the desired height
+                                                        objectFit: "contain", // Ensure the image doesn't get cropped
+                                                        margin: "auto", // Center the image horizontally
+                                                    }} />
+                                                <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Description: {slide.description}</Typography>
+                                                <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Brand: {slide.brand}</Typography>
+                                                <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Price: {slide.price}</Typography>
+                                                <br/>
+                                                <Button borderRadius={5} fontWeight="bold" variant="contained" color="" sx={{ margin: "auto", borderBottom:"1px solid #1ed14b",fontWeight:"bold", borderRadius:"20px", display: "block" }}>Add to Cart</Button>
+                                            </Box>
+                                        </SwiperSlide>
+                                    ))}
+                                </Swiper>
+                                <Typography variant="body2"  color="text.secondary">List on man category will be displayed here</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
+
                     <Grid item xs={12} sm={8} md={6} lg={4}>
                         <Card sx={{ width: '100%' }}>
                             <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Women
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    List of women category will be displayed here.
-                                </Typography>
+                                <Typography gutterBottom variant="h5" component="div">Women</Typography>
+                                <Typography variant="body2" color="text.secondary">List of women category will be displayed here.</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid item xs={12} sm={8} md={6} lg={3.54}>
+
+                    <Grid item xs={12} sm={8} md={6} lg={4}>
                         <Card sx={{ width: '100%' }}>
                             <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Electronic
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    Electronic will be displayed here.
-                                </Typography>
+                                <Typography gutterBottom variant="h5" component="div">Electronic</Typography>
+                                <Typography variant="body2" color="text.secondary">Electronic items will be displayed here.</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
                 </Grid>
 
                 {/* Second Grid container */}
-                <Grid
-                    container
-                    spacing={4}
-                    justifyContent="center" // Horizontally center the grid items
-                    alignItems="center" // Vertically center the grid items
-                    sx={{ margin: 0, padding: 0 }}
-                >
+                <Grid container spacing={4} justifyContent="center" alignItems="center" sx={{ marginTop: 4 }}>
                     <Grid item xs={12} sm={8} md={6} lg={4}>
                         <Card sx={{ width: '100%' }}>
                             <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Kids
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    Kids on man category will be displayed here
-                                </Typography>
+                                <Typography gutterBottom variant="h5" component="div">Kids</Typography>
+                                <Typography variant="body2" color="text.secondary">Kids products will be displayed here.</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
+
                     <Grid item xs={12} sm={8} md={6} lg={4}>
                         <Card sx={{ width: '100%' }}>
                             <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Home and Furniture
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    List of Home and Furniture category will be displayed here.
-                                </Typography>
+                                <Typography gutterBottom variant="h5" component="div">Home and Furniture</Typography>
+                                <Typography variant="body2" color="text.secondary">List of Home and Furniture items will be displayed here.</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid item xs={12} sm={8} md={6} lg={3.54}>
+
+                    <Grid item xs={12} sm={8} md={6} lg={4}>
                         <Card sx={{ width: '100%' }}>
-                            <CardContent
-                                sx={{
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    justifyContent: 'center', // Vertically center the content
-                                    alignItems: 'center', // Horizontally center the content
-                                    textAlign: 'center' // Ensure the text is centered horizontally
-                                }}
-                            >
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Pets
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    Pets will be displayed here.
-                                </Typography>
+                            <CardContent sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                textAlign: 'center'
+                            }}>
+                                <Typography gutterBottom variant="h5" component="div">Pets</Typography>
+                                <Typography variant="body2" color="text.secondary">Pet products will be displayed here.</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
                 </Grid>
+
             </Box>
         </ThemeProvider>
     );

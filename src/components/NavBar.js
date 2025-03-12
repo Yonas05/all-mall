@@ -37,8 +37,8 @@ const Navbar = () => {
                     backgroundColor: "white", 
                     boxShadow: "none", 
                     borderBottom: "1px solid #1ed14b", // Light green bottom border
-                    marginLeft: "20px", // Left margin
-                    width: "calc(100% - 20px)" // Adjust width so it stays aligned
+                  
+                    width: "calc(100%)" // Adjust width so it stays aligned
                 }}
             >
                 <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
