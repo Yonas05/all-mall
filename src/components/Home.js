@@ -11,6 +11,12 @@ import w_bag from "../assets/Images/women/bag.png";
 import w_complete from "../assets/Images/women/complete.png";
 import w_jacket from "../assets/Images/women/jacket.png";
 // the following image is used for electronic category
+import lg from "../assets/Images/electronics/lgtv.png";
+import televison from "../assets/Images/electronics/television.png";
+import iphone from "../assets/Images/electronics/Iphone.png";
+import samsung from "../assets/Images/electronics/samsung.png";
+import earphone from "../assets/Images/electronics/earphone.png";
+import headphone from "../assets/Images/electronics/headphone.png";
 import w_shoe from "../assets/Images/women/women-sneaker.png"
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
@@ -36,6 +42,7 @@ const theme = createTheme({
 });
 
 const man_display = [
+
     { id: 1, image: tshirt, brand: "Puma", description: "This is the new product from Puma", price: '$100' },
     { id: 2, image: tshirt1, brand: "Gucci", description: "This is the new product from Gucci", price: '$200' },
     { id: 3, image: jacket, brand: "Louis Vuitton", description: "This is the new product from Louis Vuitton", price: '$1520' },
@@ -48,6 +55,16 @@ const women_display = [
     { id: 3, image: w_jacket, brand: "Louis Vuitton", description: "This is the new product from Louis Vuitton", price: '$1520' },
     { id: 4, image: w_shoe, brand: "Adidas", description: "This is the new product from Adidas", price: '$600' },
     { id: 5, image: w_bag, brand: "Nike", description: "This is the new product from Nike", price: '$100' }
+];
+const electronic_display = [
+    { id: 1, image: lg, brand: "LG", description: "This is the new product from Puma", price: '$8100' },
+    { id: 2, image: earphone, brand: "Leneveo", description: "This is the new product from Gucci", price: '$900' },
+    { id: 3, image: headphone, brand: "APPLE", description: "This is the new product from Louis Vuitton", price: '$520' },
+    { id: 4, image: iphone, brand: "Apple", description: "This is the new product from Nike", price: '$740' },
+    { id: 5, image: samsung, brand: "Samsung", description: "This is the new product from Nike", price: '$850' },
+
+    { id: 6, image: televison, brand: "SONY", description: "This is the new product from Adidas", price: '$670' },
+    { id: 7, image: headphone, brand: "Nokia", description: "This is the new product from Nike", price: '$520' }
 ];
 function Home() {
     return (
@@ -142,6 +159,38 @@ function Home() {
                         <Card sx={{ width: '100%' }}>
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">Electronic</Typography>
+                                <Swiper modules={[Navigation, Pagination, Autoplay]}
+                                    pagination={{ clickable: true }}
+                                    loop
+                                    autoplay={{ delay: 3000, disableOnInteraction: true }}
+                                    style={{ marginBottom: "20px" }}>
+                                    {electronic_display.map((slide) => (
+                                        <SwiperSlide key={slide.id}>
+                                            <Box sx={{
+                                                width: "100%",
+                                                height: "400px",
+                                                position: "relative",
+                                                overflow: "hidden",
+                                            }}>
+                                                <img src={slide.image} alt="Electronic product"
+                                                    style={{
+                                                        width: "80%", // Adjust the percentage as needed
+                                                        height: "200px", // Set the desired height
+                                                        objectFit: "contain", // Ensure the image doesn't get cropped
+                                                        margin: "auto", // Center the image horizontally
+                                                    }} />
+                                                <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Description: {slide.description}</Typography>
+                                                <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Brand: {slide.brand}</Typography>
+                                                <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Price: {slide.price}</Typography>
+                                                <br />
+                                                <Button borderRadius={5} fontWeight="bold" variant="contained" color="" sx={{ margin: "auto", borderBottom: "1px solid #1ed14b", fontWeight: "bold", borderRadius: "20px", display: "block" }}>Add to Cart</Button>
+                                            </Box>
+                                        </SwiperSlide>
+                                    ))}
+
+                                </Swiper>
+
+
                                 <Typography variant="body2" color="text.secondary">Electronic items will be displayed here.</Typography>
                             </CardContent>
                         </Card>
