@@ -1,9 +1,17 @@
 import React from "react";
+//following image is used for the man category
 import tshirt from "../assets/Images/man/t-shirt.png";
 import tshirt1 from "../assets/Images/man/t-shist1.png";
 import jacket from "../assets/Images/man/jacket.png";
 import shoe from "../assets/Images/man/shoes.png";
 import shoe1 from "../assets/Images/man/shoes2.png";
+// the following image is used for women category
+import w_tshirt from "../assets/Images/women/sweater.png";
+import w_bag from "../assets/Images/women/bag.png";
+import w_complete from "../assets/Images/women/complete.png";
+import w_jacket from "../assets/Images/women/jacket.png";
+// the following image is used for electronic category
+import w_shoe from "../assets/Images/women/women-sneaker.png"
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
@@ -34,7 +42,13 @@ const man_display = [
     { id: 4, image: shoe, brand: "Adidas", description: "This is the new product from Adidas", price: '$600' },
     { id: 5, image: shoe1, brand: "Nike", description: "This is the new product from Nike", price: '$100' }
 ];
-
+const women_display = [
+    { id: 1, image: w_tshirt, brand: "Puma", description: "This is the new product from Puma", price: '$100' },
+    { id: 2, image: w_complete, brand: "Gucci", description: "This is the new product from Gucci", price: '$200' },
+    { id: 3, image: w_jacket, brand: "Louis Vuitton", description: "This is the new product from Louis Vuitton", price: '$1520' },
+    { id: 4, image: w_shoe, brand: "Adidas", description: "This is the new product from Adidas", price: '$600' },
+    { id: 5, image: w_bag, brand: "Nike", description: "This is the new product from Nike", price: '$100' }
+];
 function Home() {
     return (
         <ThemeProvider theme={theme}>
@@ -45,11 +59,11 @@ function Home() {
                     <Grid item xs={12} sm={8} md={6} lg={4}>
                         <Card sx={{ width: '100%', border: "none" }}>
                             <CardContent>
-                                <Typography gutterBottom variant="h5" sx={{paddingLeft:"20%", fontWeight:"bold"}} component="div">Man</Typography>
-                                <br/>
+                                <Typography gutterBottom variant="h5" sx={{ paddingLeft: "20%", fontWeight: "bold" }} component="div">Man</Typography>
+                                <br />
                                 <Swiper
                                     modules={[Navigation, Pagination, Autoplay]}
-                                                                       pagination={{ clickable: true }}
+                                    pagination={{ clickable: true }}
                                     loop
                                     autoplay={{ delay: 3000, disableOnInteraction: true }}
                                     style={{ marginBottom: "20px" }}
@@ -72,13 +86,13 @@ function Home() {
                                                 <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Description: {slide.description}</Typography>
                                                 <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Brand: {slide.brand}</Typography>
                                                 <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Price: {slide.price}</Typography>
-                                                <br/>
-                                                <Button borderRadius={5} fontWeight="bold" variant="contained" color="" sx={{ margin: "auto", borderBottom:"1px solid #1ed14b",fontWeight:"bold", borderRadius:"20px", display: "block" }}>Add to Cart</Button>
+                                                <br />
+                                                <Button borderRadius={5} fontWeight="bold" variant="contained" color="" sx={{ margin: "auto", borderBottom: "1px solid #1ed14b", fontWeight: "bold", borderRadius: "20px", display: "block" }}>Add to Cart</Button>
                                             </Box>
                                         </SwiperSlide>
                                     ))}
                                 </Swiper>
-                                <Typography variant="body2"  color="text.secondary">List on man category will be displayed here</Typography>
+                                <Typography variant="body2" color="text.secondary">List on man category will be displayed here</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
@@ -87,6 +101,38 @@ function Home() {
                         <Card sx={{ width: '100%' }}>
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">Women</Typography>
+                                <Swiper
+                                    modules={[Navigation, Pagination, Autoplay]}
+                                    pagination={{ clickable: true }}
+                                    loop
+
+                                    autoplay={{ delay: 3000, disableOnInteraction: true }}
+                                    style={{ marginBottom: "20px" }}                        >
+
+                                    {women_display.map((slide) => (
+                                        <SwiperSlide key={slide.id}>
+                                            <Box sx={{
+                                                width: "100%",
+                                                height: "400px",
+                                                position: "relative",
+                                                overflow: "hidden",
+                                            }}>
+                                                <img src={slide.image} alt={slide.description}
+                                                    style={{
+                                                        width: "80%", // Adjust the percentage as needed
+                                                        height: "200px", // Set the desired height
+                                                        objectFit: "contain", // Ensure the image doesn't get cropped
+                                                        margin: "auto", // Center the image horizontally
+                                                    }} />
+                                                <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Description: {slide.description}</Typography>
+                                                <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Brand: {slide.brand}</Typography>
+                                                <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Price: {slide.price}</Typography>
+                                                <br />
+                                                <Button borderRadius={5} fontWeight="bold" variant="contained" color="" sx={{ margin: "auto", borderBottom: "1px solid #1ed14b", fontWeight: "bold", borderRadius: "20px", display: "block" }}>Add to Cart</Button>
+                                            </Box>
+                                        </SwiperSlide>
+                                    ))} </Swiper>
+
                                 <Typography variant="body2" color="text.secondary">List of women category will be displayed here.</Typography>
                             </CardContent>
                         </Card>
