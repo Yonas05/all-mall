@@ -1,10 +1,9 @@
 import React from "react";
-//following image is used for the man category
-import tshirt from "../assets/Images/man/t-shirt.png";
-import tshirt1 from "../assets/Images/man/t-shist1.png";
-import jacket from "../assets/Images/man/jacket.png";
-import shoe from "../assets/Images/man/shoes.png";
-import shoe1 from "../assets/Images/man/shoes2.png";
+
+//import category
+
+import Man_Display from "./Category/Man_Display";
+
 // the following image is used for women category
 import w_tshirt from "../assets/Images/women/sweater.png";
 import w_bag from "../assets/Images/women/bag.png";
@@ -27,6 +26,14 @@ import i3 from "../assets/Images/kids/3.png";
 import i4 from "../assets/Images/kids/4.png";
 import i5 from "../assets/Images/kids/5.png";
 //import home and furniture image
+
+import tshirt from "../assets/Images/man/t-shirt.png";
+import tshirt1 from "../assets/Images/man/t-shist1.png";
+import jacket from "../assets/Images/man/jacket.png";
+import shoe from "../assets/Images/man/shoes.png";
+import shoe1 from "../assets/Images/man/shoes2.png";
+
+
 import all_in_one from "../assets/Images/home_furniture/all_in_one.png";
 import dining_table from "../assets/Images/home_furniture/dinner_table.png";
 import sofa from "../assets/Images/home_furniture/sofa1.png";
@@ -131,29 +138,31 @@ function Home() {
                                     autoplay={{ delay: 3000, disableOnInteraction: true }}
                                     style={{ marginBottom: "20px" }}
                                 >
-                                    {man_display.map((slide) => (
-                                        <SwiperSlide key={slide.id}>
-                                            <Box sx={{
-                                                width: "100%",
-                                                height: "400px",
-                                                position: "relative",
-                                                overflow: "hidden",
-                                            }}>
-                                                <img src={slide.image} alt={slide.description}
-                                                    style={{
-                                                        width: "80%", // Adjust the percentage as needed
-                                                        height: "200px", // Set the desired height
-                                                        objectFit: "contain", // Ensure the image doesn't get cropped
-                                                        margin: "auto", // Center the image horizontally
-                                                    }} />
-                                                <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Description: {slide.description}</Typography>
-                                                <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Brand: {slide.brand}</Typography>
-                                                <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Price: {slide.price}</Typography>
-                                                <br />
-                                                <Button borderRadius={5} fontWeight="bold" variant="contained" color="" sx={{ margin: "auto", borderBottom: "1px solid #1ed14b", fontWeight: "bold", borderRadius: "20px", display: "block" }}>Add to Cart</Button>
-                                            </Box>
-                                        </SwiperSlide>
-                                    ))}
+                                 {
+                                            man_display.map((slide) => (
+                                                <SwiperSlide key={slide.id}>
+                                                    <Box sx={{
+                                                        width: "100%",
+                                                        height: "400px",
+                                                        position: "relative",
+                                                        overflow: "hidden",
+                                                    }}>
+                                                        <img src={slide.image} alt={slide.description}
+                                                            style={{
+                                                                width: "80%", // Adjust the percentage as needed
+                                                                height: "200px", // Set the desired height
+                                                                objectFit: "contain", // Ensure the image doesn't get cropped
+                                                                margin: "auto", // Center the image horizontally
+                                                            }} />
+                                                        <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Description: {slide.description}</Typography>
+                                                        <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Brand: {slide.brand}</Typography>
+                                                        <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Price: {slide.price}</Typography>
+                                                        <br />
+                                                        <Button borderRadius={5} fontWeight="bold" variant="contained" color="" sx={{ margin: "auto", borderBottom: "1px solid #1ed14b", fontWeight: "bold", borderRadius: "20px", display: "block" }}>Add to Cart</Button>
+                                                    </Box>
+                                                </SwiperSlide>
+                                            ))
+                                 }
                                 </Swiper>
                                 <Typography variant="body2" color="text.secondary">List on man category will be displayed here</Typography>
                             </CardContent>
