@@ -27,13 +27,6 @@ import i4 from "../assets/Images/kids/4.png";
 import i5 from "../assets/Images/kids/5.png";
 //import home and furniture image
 
-import tshirt from "../assets/Images/man/t-shirt.png";
-import tshirt1 from "../assets/Images/man/t-shist1.png";
-import jacket from "../assets/Images/man/jacket.png";
-import shoe from "../assets/Images/man/shoes.png";
-import shoe1 from "../assets/Images/man/shoes2.png";
-
-
 import all_in_one from "../assets/Images/home_furniture/all_in_one.png";
 import dining_table from "../assets/Images/home_furniture/dinner_table.png";
 import sofa from "../assets/Images/home_furniture/sofa1.png";
