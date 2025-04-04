@@ -68,15 +68,6 @@ const theme = createTheme({
     },
 });
 
-const man_display = [
-
-    { id: 1, image: tshirt, brand: "Puma", description: "This is the new product from Puma", price: '$100' },
-    { id: 2, image: tshirt1, brand: "Gucci", description: "This is the new product from Gucci", price: '$200' },
-    { id: 3, image: jacket, brand: "Louis Vuitton", description: "This is the new product from Louis Vuitton", price: '$1520' },
-    { id: 4, image: shoe, brand: "Adidas", description: "This is the new product from Adidas", price: '$600' },
-    { id: 5, image: shoe1, brand: "Nike", description: "This is the new product from Nike", price: '$100' }
-];
-
 const kid_display = [
 
     { id: 1, image: i1, brand: "Puma", description: "This is the new product from Puma", price: '$100' },
@@ -131,39 +122,7 @@ function Home() {
                             <CardContent>
                                 <Typography gutterBottom variant="h5" sx={{ paddingLeft: "20%", fontWeight: "bold" }} component="div">Man</Typography>
                                 <br />
-                                <Swiper
-                                    modules={[Navigation, Pagination, Autoplay]}
-                                    pagination={{ clickable: true }}
-                                    loop
-                                    autoplay={{ delay: 3000, disableOnInteraction: true }}
-                                    style={{ marginBottom: "20px" }}
-                                >
-                                 {
-                                            man_display.map((slide) => (
-                                                <SwiperSlide key={slide.id}>
-                                                    <Box sx={{
-                                                        width: "100%",
-                                                        height: "400px",
-                                                        position: "relative",
-                                                        overflow: "hidden",
-                                                    }}>
-                                                        <img src={slide.image} alt={slide.description}
-                                                            style={{
-                                                                width: "80%", // Adjust the percentage as needed
-                                                                height: "200px", // Set the desired height
-                                                                objectFit: "contain", // Ensure the image doesn't get cropped
-                                                                margin: "auto", // Center the image horizontally
-                                                            }} />
-                                                        <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Description: {slide.description}</Typography>
-                                                        <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Brand: {slide.brand}</Typography>
-                                                        <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>Price: {slide.price}</Typography>
-                                                        <br />
-                                                        <Button borderRadius={5} fontWeight="bold" variant="contained" color="" sx={{ margin: "auto", borderBottom: "1px solid #1ed14b", fontWeight: "bold", borderRadius: "20px", display: "block" }}>Add to Cart</Button>
-                                                    </Box>
-                                                </SwiperSlide>
-                                            ))
-                                 }
-                                </Swiper>
+                                <Man_Display/>
                                 <Typography variant="body2" color="text.secondary">List on man category will be displayed here</Typography>
                             </CardContent>
                         </Card>
