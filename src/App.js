@@ -6,7 +6,7 @@ import NavBar from './components/NavBar';
 import Home  from './components/Home';
 import SlideImages from './components/SlideImage';
 import Footer from './components/Footer';
-import ManDisplay from './components/Category/Man_Display';
+import PetDisplay from './components/Category/Pets';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/container" element={<Container />} />
         <Route path='/slides' element={<SlideImages />} />
-        <Route path='/man_display' element={<ManDisplay />} />
+        <Route path='/kid_display' element={<PetDisplay />} />
       </Routes>
       <Footer />
     </Router>
