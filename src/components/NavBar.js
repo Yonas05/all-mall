@@ -55,7 +55,7 @@ const Navbar = () => {
             'Women': '/women',
             'Electronics': '/electronics',
             'Home & Furniture': '/home-furniture',
-            'Kids': '/kids',
+            'Kids': '/kids_display',
             'Pets': '/pets',
         };
 

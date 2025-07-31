@@ -8,18 +8,17 @@ const Footer = () => {
         <Box
             component="footer"
             sx={{
-                position: "inherit",
+                position: "fixed",  // Fixes the footer to the bottom
                 bottom: 0,
                 left: 0,
-                overflowX: "hidden",
-                maxWidth: "100%",
+                width: "100%",  // Ensure the footer spans the entire width
                 backgroundColor: "#f8f8f8",
                 padding: "20px",
                 borderTop: "1px solid #1ed14b",
                 fontFamily: "'Ubuntu', sans-serif",
                 textAlign: "center",
-                fontSize:10,
-                 // Added margin-right
+                fontSize: 10,
+                zIndex: 999,  // Make sure it's above other content
             }}
         >
             <Grid container spacing={3} justifyContent="center">

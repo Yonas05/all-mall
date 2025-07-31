@@ -9,7 +9,9 @@ import SlideImages from './components/SlideImage';
 import Footer from './components/Footer';
 import PetDisplay from './components/Category/Pets';
 import { ThemeProvider } from '@emotion/react';
-
+import Kid_Display from './components/Category/Kids';
+import GetManDetail from './components/Detail/Men_Details';
+import Pet_Detail from './components/Detail/Pet_Detail';
 function App() {
   const theme = createTheme({
       typography: {
@@ -27,9 +29,12 @@ function App() {
       {/* Routes */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path='/pet-display' element={<PetDisplay/>}/>
+        <Route path ='pets' element={<Pet_Detail/>}/>
         <Route path="/container" element={<Container />} />
         <Route path='/slides' element={<SlideImages />} />
-        <Route path='/kid_display' element={<PetDisplay />} />
+        <Route path="/men" element={<GetManDetail/>}/>
+        <Route path='/kids_display' element={<Kid_Display />} />
       </Routes>
       <Footer />
     </Router>
