@@ -2,60 +2,69 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { Typography, Box } from "@mui/material";
-import tshirt from "../../assets/Images/man/t-shirt.png";
-import tshirt1 from "../../assets/Images/man/t-shist1.png";
-import jacket from "../../assets/Images/man/jacket.png";
-import shoe from "../../assets/Images/man/shoes.png";
-import shoe1 from "../../assets/Images/man/shoes2.png";
+import all_in_one from "../../assets/Images/home_furniture/all_in_one.png";
+import dining_table from "../../assets/Images/home_furniture/dinner_table.png";
+import sofa from "../../assets/Images/home_furniture/sofa1.png";
+import sofacurtain from "../../assets/Images/home_furniture/sofa_curtains.png";
+import permus from "../../assets/Images/home_furniture/phermus.png";
+import bed1 from "../../assets/Images/home_furniture/bed1.png";
+import bed2 from "../../assets/Images/home_furniture/bed2.jpg";
 import { useNavigate } from "react-router-dom";
-
-const man_display = [
+const display_furnitures = [
     {
         id: 1,
-        name: "T-shirt",
-        image: tshirt,
-        price: 1000,
-        rating: 4.5,
-        description: "This is a t-shirt made of cotton.",
+        image: permus,
+        brand: "Puma",
+        description: "This is the new product from Timus",
+        price: '$180'
     },
     {
         id: 2,
-        name: "T-shirt",
-        image: tshirt1,
-        price: 1200,
-        rating: 4.7,
-        description: "This is a t-shirt made of cotton.",
+        image: all_in_one,
+        brand: "Timus",
+        description: "This is the new product from Timus",
+        price: '$900'
     },
     {
         id: 3,
-        name: "Jacket",
-        image: jacket,
-        price: 2000,
-        rating: 4.8,
-        description: "This is a jacket made of leather.",
+        image: sofa,
+        brand: "Louis Vuitton",
+        description: "This is the new product from Louis Vuitton",
+        price: '$520'
     },
     {
         id: 4,
-        name: "Shoes",
-        image: shoe,
-        price: 3000,
-        rating: 4.9,
-        description: "These are shoes made of leather.",
+        image: sofacurtain,
+        brand: "Baressa",
+        description: "This is the new product from Barressa",
+        price: '$600'
     },
     {
-        id: 5,
-        name: "Shoes",
-        image: shoe1,
-        price: 3500,
-        rating: 4.6,
-        description: "These are shoes made of leather.",
+        id: 6,
+        image: bed1,
+        brand: "Dileux",
+        description: "This is the new product from Baressa",
+        price: '$210'
+    },
+    {
+        id: 7,
+        image: bed2,
+        brand: "Baressa",
+        description: "This is the new product from Baressa",
+        price: '$250'
+    },
+    {
+        id: 8,
+        image: dining_table,
+        brand: "Dileux",
+        description: "This is the new product from dileux",
+        price: '$100'
     }
 ];
-
-export default function Men_Details() {
+export default function Kid_Details() {
     const navigate = useNavigate();
     const handleCardClick = (id) => {
-        navigate(`/men-collections/${id}`);
+        navigate(`/furnitures-collections/${id}`);
     };
 
     return (
@@ -83,7 +92,7 @@ export default function Men_Details() {
                 }}
             >
                 {
-                    man_display.map((item) => (
+                    display_furnitures.map((item) => (
                         <SwiperSlide key={item.id}>
                             <Box
                                 onClick={() => handleCardClick(item.id)}

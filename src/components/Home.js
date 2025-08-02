@@ -29,7 +29,7 @@ function Home() {
                 <Grid container spacing={4} justifyContent="center" alignItems="center" border="none">
                     {/* Man Card */}
                     <Grid item xs={12} sm={8} md={6} lg={4}>
-                        <Link to="/man" style={{ textDecoration: 'none' }}>
+                        <Link to="/men-collections" style={{ textDecoration: 'none' }}>
                             <Card sx={{ width: '100%', border: "none" }}>
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" sx={{ paddingLeft: "20%", fontWeight: "bold" }} component="div">Man</Typography>
@@ -42,7 +42,7 @@ function Home() {
 
                     {/* Women Card */}
                     <Grid item xs={12} sm={8} md={6} lg={4}>
-                        <Link to="/women" style={{ textDecoration: 'none' }}>
+                        <Link to="/women-collections" style={{ textDecoration: 'none' }}>
                             <Card sx={{ width: '100%' }}>
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">Women</Typography>
@@ -55,7 +55,7 @@ function Home() {
 
                     {/* Electronic Card */}
                     <Grid item xs={12} sm={8} md={6} lg={4}>
-                        <Link to="/electronics" style={{ textDecoration: 'none' }}>
+                        <Link to="/electronics-collections" style={{ textDecoration: 'none' }}>
                             <Card sx={{ width: '100%' }}>
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">Electronic</Typography>
@@ -71,7 +71,7 @@ function Home() {
                 <Grid container spacing={4} justifyContent="center" alignItems="center" sx={{ marginTop: 4 }}>
                     {/* Kids Card */}
                     <Grid item xs={12} sm={8} md={6} lg={4}>
-                        <Link to="/kids" style={{ textDecoration: 'none' }}>
+                        <Link to="/kids-collections" style={{ textDecoration: 'none' }}>
                             <Card sx={{ width: '100%' }}>
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">Kids</Typography>
@@ -84,7 +84,7 @@ function Home() {
 
                     {/* Home & Furniture Card */}
                     <Grid item xs={12} sm={8} md={6} lg={4}>
-                        <Link to="/home-furniture" style={{ textDecoration: 'none' }}>
+                        <Link to="/furniture-collections" style={{ textDecoration: 'none' }}>
                             <Card sx={{ width: '100%' }}>
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">Home and Furniture</Typography>
@@ -97,7 +97,7 @@ function Home() {
 
                     {/* Pets Card */}
                     <Grid item xs={12} sm={8} md={6} lg={4}>
-                        <Link to="/pets" style={{ textDecoration: 'none' }}>
+                        <Link to="/pets-collections" style={{ textDecoration: 'none' }}>
                             <Card sx={{ width: '100%' }}>
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">Pets</Typography>

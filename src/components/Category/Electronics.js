@@ -1,14 +1,14 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { Typography, Button, Box } from "@mui/material";
+import { Typography,Box } from "@mui/material";
 
 import televison from "../../assets/Images/electronics/television.png";
 import iphone from "../../assets/Images/electronics/Iphone.png";
 import samsung from "../../assets/Images/electronics/samsung.png";
 import earphone from "../../assets/Images/electronics/earphone.png";
 import headphone from "../../assets/Images/electronics/headphone.png";
-import { Height } from "@mui/icons-material";
+
 
 const display_electronics = [
 
@@ -81,8 +81,7 @@ function Electronics_Display() {
                                 Price: {slide.price}
                             </Typography>
                             <br />
-                            <Button borderRadius={5} fontWeight="bold" variant="contained" color="" sx={{ margin: "auto", borderBottom: "1px solid #1ed14b", fontWeight: "bold", borderRadius: "20px", display: "block" }}>Add to Cart</Button>
-
+                    
                         </Box>
 
                     </SwiperSlide>

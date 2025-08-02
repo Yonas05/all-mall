@@ -2,60 +2,56 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { Typography, Box } from "@mui/material";
-import tshirt from "../../assets/Images/man/t-shirt.png";
-import tshirt1 from "../../assets/Images/man/t-shist1.png";
-import jacket from "../../assets/Images/man/jacket.png";
-import shoe from "../../assets/Images/man/shoes.png";
-import shoe1 from "../../assets/Images/man/shoes2.png";
+import televison from "../../assets/Images/electronics/television.png";
+import iphone from "../../assets/Images/electronics/Iphone.png";
+import samsung from "../../assets/Images/electronics/samsung.png";
+import earphone from "../../assets/Images/electronics/earphone.png";
+import headphone from "../../assets/Images/electronics/headphone.png";
 import { useNavigate } from "react-router-dom";
 
-const man_display = [
-    {
-        id: 1,
-        name: "T-shirt",
-        image: tshirt,
-        price: 1000,
-        rating: 4.5,
-        description: "This is a t-shirt made of cotton.",
-    },
+
+const display_electronics = [
+
     {
         id: 2,
-        name: "T-shirt",
-        image: tshirt1,
-        price: 1200,
-        rating: 4.7,
-        description: "This is a t-shirt made of cotton.",
+        image: televison,
+        brand: "Samsung",
+        description: "This is the new product from Samsung",
+        price: '$200'
     },
     {
         id: 3,
-        name: "Jacket",
-        image: jacket,
-        price: 2000,
-        rating: 4.8,
-        description: "This is a jacket made of leather.",
+        image: iphone,
+        brand: "Apple",
+        description: "This is the new product from Apple",
+        price: '$1520'
     },
     {
         id: 4,
-        name: "Shoes",
-        image: shoe,
-        price: 3000,
-        rating: 4.9,
-        description: "These are shoes made of leather.",
+        image: samsung,
+        brand: "Samsung",
+        description: "This is the new product from Samsung",
+        price: '$600'
     },
     {
         id: 5,
-        name: "Shoes",
-        image: shoe1,
-        price: 3500,
-        rating: 4.6,
-        description: "These are shoes made of leather.",
-    }
+        image: earphone,
+        brand: "Apple",
+        description: "This is the new product from Apple",
+        price: '$100'
+    },
+    {
+        id: 6,
+        image: headphone,
+        brand: "Sony",
+        description: "This is the new product from Sony",
+        price: '$150',
+    },
 ];
-
-export default function Men_Details() {
+export default function Kid_Details() {
     const navigate = useNavigate();
     const handleCardClick = (id) => {
-        navigate(`/men-collections/${id}`);
+        navigate(`/electronics-collections/${id}`);
     };
 
     return (
@@ -83,7 +79,7 @@ export default function Men_Details() {
                 }}
             >
                 {
-                    man_display.map((item) => (
+                    display_electronics.map((item) => (
                         <SwiperSlide key={item.id}>
                             <Box
                                 onClick={() => handleCardClick(item.id)}

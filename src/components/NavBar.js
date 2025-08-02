@@ -51,12 +51,12 @@ const Navbar = () => {
         handleCategoryMenuClose();
 
         const routeMap = {
-            'Men': '/men',
-            'Women': '/women',
-            'Electronics': '/electronics',
-            'Home & Furniture': '/home-furniture',
-            'Kids': '/kids_display',
-            'Pets': '/pets',
+            'Men': '/men-collections',
+            'Women': '/women-collections',
+            'Electronics': '/electronics-collections',
+            'Home & Furniture': '/furnitures-collections',
+            'Kids': '/kids-collections',
+            'Pets': '/pets-collections',
         };
 
         if (routeMap[category]) {

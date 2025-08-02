@@ -50,7 +50,7 @@ export default function Pet_Detail() {
     const navigate = useNavigate();
 
     const handleCardClick = (id) => {
-        navigate(`/pets/${id}`);
+        navigate(`/pets-collections/${id}`);        
     };
 
     return (

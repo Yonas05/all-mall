@@ -1,7 +1,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, Pagination, Autoplay } from "swiper/modules"
-import { Typography, Button, Box } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 
 import w_tshirt from '../../assets/Images/women/bag.png'
 import w_complete from '../../assets/Images/women/complete.png'
@@ -71,17 +71,31 @@ function Women_Display() {
                                 objectFit: "contain",
                                 margin: "auto",
                             }} />
-                        <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>
+                        <Typography
+                            variant="h6"
+                            sx={{
+                                fontWeight: "bold",
+                                textAlign: "center"
+                            }}>
                             Description: {slide.description}
                         </Typography>
-                        <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>
+                        <Typography
+                            variant="h6"
+                            sx={{
+                                fontWeight: "bold",
+                                textAlign: "center"
+                            }}>
                             Brand: {slide.name}
                         </Typography>
-                        <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>
+                        <Typography
+                            variant="h6"
+                            sx={{
+                                fontWeight: "bold",
+                                textAlign: "center"
+                            }}>
                             Price: {slide.price}
                         </Typography>
                         <br />
-                        <Button borderRadius={5} fontWeight="bold" variant="contained" color="" sx={{ margin: "auto", borderBottom: "1px solid #1ed14b", fontWeight: "bold", borderRadius: "20px", display: "block" }}>Add to Cart</Button>
 
                     </Box>
 

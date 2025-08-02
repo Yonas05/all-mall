@@ -1,7 +1,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { Typography, Button, Box } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 
 //kid category is displayed here
 import i1 from "../../assets/Images/kids/1.png";
@@ -80,7 +80,6 @@ const kid_display = [
                                         Price: {slide.price}
                                       </Typography>
                                       <br />
-                                      <Button borderRadius={5} fontWeight="bold" variant="contained" color="" sx={{ margin: "auto", borderBottom: "1px solid #1ed14b", fontWeight: "bold", borderRadius: "20px", display: "block" }}>Add to Cart</Button>
                           
                                     </Box>
 

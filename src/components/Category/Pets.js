@@ -77,8 +77,6 @@ function Pets() {
                             Price: {slide.price}
                         </Typography>
                         <br />
-                        <Button borderRadius={5} fontWeight="bold" variant="contained" color="" sx={{ margin: "auto", borderBottom: "1px solid #1ed14b", fontWeight: "bold", borderRadius: "20px", display: "block" }}>Add to Cart</Button>
-
                     </Box>
                 </SwiperSlide>
             ))}

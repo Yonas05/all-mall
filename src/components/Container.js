@@ -27,7 +27,7 @@ function LeftCardFromEdge() {
                 <Grid item xs={12} sm={8} sx={{ paddingLeft: 0, marginLeft: 0 }}>
                     <Card sx={{ width: '100%' }}>
                         <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
-                            <Card sx={{ width: '100%' }}>
+                            <Card sx={{ width: '50%' }}>
                                 <CardContent>
                                  <SlideImage/>
                                 </CardContent>

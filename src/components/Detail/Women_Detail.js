@@ -2,60 +2,53 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { Typography, Box } from "@mui/material";
-import tshirt from "../../assets/Images/man/t-shirt.png";
-import tshirt1 from "../../assets/Images/man/t-shist1.png";
-import jacket from "../../assets/Images/man/jacket.png";
-import shoe from "../../assets/Images/man/shoes.png";
-import shoe1 from "../../assets/Images/man/shoes2.png";
+import w_tshirt from '../../assets/Images/women/bag.png'
+import w_complete from '../../assets/Images/women/complete.png'
+import w_jacket from '../../assets/Images/women/jacket.png'
+import w_shoe from '../../assets/Images/women/women-sneaker.png'
+import w_bag from '../../assets/Images/women/sweater.png'
 import { useNavigate } from "react-router-dom";
-
-const man_display = [
+const women_display = [
     {
         id: 1,
-        name: "T-shirt",
-        image: tshirt,
-        price: 1000,
-        rating: 4.5,
-        description: "This is a t-shirt made of cotton.",
+        image: w_tshirt,
+        brand: "Puma",
+        description: "This is the new product from Puma",
+        price: '$100'
     },
     {
         id: 2,
-        name: "T-shirt",
-        image: tshirt1,
-        price: 1200,
-        rating: 4.7,
-        description: "This is a t-shirt made of cotton.",
+        image: w_complete,
+        brand: "Gucci",
+        description: "This is the new product from Gucci",
+        price: '$200'
     },
     {
         id: 3,
-        name: "Jacket",
-        image: jacket,
-        price: 2000,
-        rating: 4.8,
-        description: "This is a jacket made of leather.",
+        image: w_jacket,
+        brand: "Louis Vuitton",
+        description: "This is the new product from Louis Vuitton",
+        price: '$1520'
     },
     {
         id: 4,
-        name: "Shoes",
-        image: shoe,
-        price: 3000,
-        rating: 4.9,
-        description: "These are shoes made of leather.",
+        image: w_shoe,
+        brand: "Adidas",
+        description: "This is the new product from Adidas",
+        price: '$600'
     },
     {
         id: 5,
-        name: "Shoes",
-        image: shoe1,
-        price: 3500,
-        rating: 4.6,
-        description: "These are shoes made of leather.",
+        image: w_bag,
+        brand: "Nike",
+        description: "This is the new product from Nike",
+        price: '$100'
     }
 ];
-
-export default function Men_Details() {
+export default function Women_Details() {
     const navigate = useNavigate();
     const handleCardClick = (id) => {
-        navigate(`/men-collections/${id}`);
+        navigate(`/women-collections/${id}`);
     };
 
     return (
@@ -83,7 +76,7 @@ export default function Men_Details() {
                 }}
             >
                 {
-                    man_display.map((item) => (
+                    women_display.map((item) => (
                         <SwiperSlide key={item.id}>
                             <Box
                                 onClick={() => handleCardClick(item.id)}
