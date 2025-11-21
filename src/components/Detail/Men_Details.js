@@ -1,147 +1,135 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
-import { Typography, Box } from "@mui/material";
-import tshirt from "../../assets/Images/man/t-shirt.png";
-import tshirt1 from "../../assets/Images/man/t-shist1.png";
-import jacket from "../../assets/Images/man/jacket.png";
-import shoe from "../../assets/Images/man/shoes.png";
-import shoe1 from "../../assets/Images/man/shoes2.png";
+import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
-const man_display = [
-    {
-        id: 1,
-        name: "T-shirt",
-        image: tshirt,
-        price: 1000,
-        rating: 4.5,
-        description: "This is a t-shirt made of cotton.",
-    },
-    {
-        id: 2,
-        name: "T-shirt",
-        image: tshirt1,
-        price: 1200,
-        rating: 4.7,
-        description: "This is a t-shirt made of cotton.",
-    },
-    {
-        id: 3,
-        name: "Jacket",
-        image: jacket,
-        price: 2000,
-        rating: 4.8,
-        description: "This is a jacket made of leather.",
-    },
-    {
-        id: 4,
-        name: "Shoes",
-        image: shoe,
-        price: 3000,
-        rating: 4.9,
-        description: "These are shoes made of leather.",
-    },
-    {
-        id: 5,
-        name: "Shoes",
-        image: shoe1,
-        price: 3500,
-        rating: 4.6,
-        description: "These are shoes made of leather.",
-    }
-];
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Men_Details() {
     const navigate = useNavigate();
+    const [menDisplay, setMenDisplay] = useState([]);
+
     const handleCardClick = (id) => {
         navigate(`/men-collections/${id}`);
     };
+
+    useEffect(() => {
+        axios
+            .get("http://localhost:3500/inventory")
+            .then((response) => {
+                console.log("Full API Data:", response.data);
+
+                // Filter safely: trim and convert to lowercase
+                const filtered = response.data.filter(
+                    (item) =>
+                        item.category &&
+                        item.category === "Men"
+                );
+
+                setMenDisplay(filtered);
+              
+            })
+            .catch((err) => {
+                console.error("Error fetching electronics:", err);
+              
+            }).catch(error => console.error("Error fetching men display data:", error));
+    }, []);
 
     return (
         <Box
             sx={{
                 width: "100%",
-                maxWidth: "1200px",
+                maxWidth: "1400px",
                 margin: "auto",
-                paddingTop: 4,
-                paddingBottom: 4,
-
+                padding: 4,
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+                gap: 3,
             }}
         >
-            <br /> <br />
-            <Swiper
-                modules={[Navigation, Pagination]}
-                spaceBetween={20}
-                slidesPerView={1}
-                navigation
-                pagination={{ clickable: true }}
-                breakpoints={{
-                    600: { slidesPerView: 2 },
-                    960: { slidesPerView: 3 },
-                    1280: { slidesPerView: 4 }, // This ensures 4 images per slide on large screens
-                }}
-            >
-                {
-                    man_display.map((item) => (
-                        <SwiperSlide key={item.id}>
-                            <Box
-                                onClick={() => handleCardClick(item.id)}
-                                sx={{
-                                    cursor: "pointer",
-                                    transition: "0.3s",
-                                    "&:hover": {
-                                        boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.2)",
-                                        transform: "scale(1.02)",
-                                    },
-                                    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-                                    borderRadius: 2,
-                                    overflow: "hidden",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    alignItems: "center",
-                                    padding: 2,
-                                    backgroundColor: "#fff",
-                                    height: "100%",
-                                }}
-                            >
-                                <img
-                                    src={item.image}
-                                    alt={item.name}
-                                    style={{
-                                        width: "100%",
-                                        height: "180px",
-                                        objectFit: "contain",
-                                    }}
-                                />
-                                <Typography
-                                    variant="body2"
-                                    fontWeight="bold"
-                                    textAlign="center"
-                                    mt={1}
-                                >
-                                    Description: {item.description}
-                                </Typography>
-                                <Typography
-                                    variant="body2"
-                                    fontWeight="bold"
-                                    textAlign="center"
-                                >
-                                    {item.name}
-                                </Typography>
-                                <Typography
-                                    variant="body2"
-                                    fontWeight="bold"
-                                    textAlign="center"
-                                    mb={2}
-                                >
-                                    Price: ${item.price}
-                                </Typography>
-                            </Box>
-                        </SwiperSlide>
-                    ))
-                }
-            </Swiper>
+            {menDisplay.map((item) => (
+                <Box
+                    key={item.idno}
+                    onClick={() => handleCardClick(item.idno)}
+                    sx={{
+                        cursor: "pointer",
+                        transition: "0.35s ease",
+                        borderRadius: "16px",
+                        padding: 2.5,
+                        background: "linear-gradient(145deg, #ffffff, #f5f5f5)",
+                        boxShadow: "0 8px 20px rgba(0,0,0,0.12)",
+                        "&:hover": {
+                            transform: "translateY(-6px)",
+                            boxShadow: "0 12px 28px rgba(0,0,0,0.18)",
+                            background: "linear-gradient(145deg, #fdfdfd, #ededed)",
+                        },
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                    }}
+                >
+                    <Box
+                        sx={{
+                            width: "100%",
+                            height: "200px",
+                            borderRadius: "14px",
+                            overflow: "hidden",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            marginBottom: "15px",
+                            background: "linear-gradient(180deg, #fafafa, #eaeaea)",
+                        }}
+                    >
+                        <img
+                            src={item.image}
+                            alt={item.name}
+                            style={{
+                                width: "80%",
+                                height: "80%",
+                                objectFit: "contain",
+                            }}
+                        />
+                    </Box>
+
+                    <Typography
+                        variant="h6"
+                        sx={{
+                            fontWeight: "bold",
+                            textAlign: "center",
+                            marginBottom: "6px",
+                        }}
+                    >
+                        {item.name}
+                    </Typography>
+
+                    <Typography
+                        variant="body2"
+                        sx={{
+                            textAlign: "center",
+                            color: "#555",
+                            minHeight: "40px",
+                            marginBottom: "10px",
+                        }}
+                    >
+                        {item.description}
+                    </Typography>
+
+                    <Typography
+                        variant="h6"
+                        sx={{
+                            fontWeight: "bold",
+                            textAlign: "center",
+                            color: "#333",
+                            background: "#f7f7f7",
+                            width: "100%",
+                            padding: "8px 0",
+                            borderRadius: "10px",
+                            border: "1px solid #e0e0e0",
+                        }}
+                    >
+                        ${item.price}
+                    </Typography>
+                </Box>
+            ))}
         </Box>
     );
 }

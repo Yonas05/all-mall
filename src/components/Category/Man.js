@@ -1,61 +1,36 @@
-import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 // Import Swiper styles
 // Install the modules
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 // Import images for the man category
-import tshirt from "../../assets/Images/man/t-shirt.png";
-import tshirt1 from "../../assets/Images/man/t-shist1.png";
-import jacket from "../../assets/Images/man/jacket.png";
-import shoe from "../../assets/Images/man/shoes.png";
-import shoe1 from "../../assets/Images/man/shoes2.png";
-
-const man_display = [
-  {
-    id: 1,
-    name: "T-shirt",
-    image: tshirt,
-    price: 1000,
-    rating: 4.5,
-    description: "This is a t-shirt made of cotton.",
-  },
-  {
-    id: 2,
-    name: "T-shirt",
-    image: tshirt1,
-    price: 1200,
-    rating: 4.7,
-    description: "This is a t-shirt made of cotton.",
-  },
-  {
-    id: 3,
-    name: "Jacket",
-    image: jacket,
-    price: 2000,
-    rating: 4.8,
-    description: "This is a jacket made of leather.",
-  },
-  {
-    id: 4,
-    name: "Shoes",
-    image: shoe,
-    price: 3000,
-    rating: 4.9,
-    description: "These are shoes made of leather.",
-  },
-  {
-    id: 5,
-    name: "Shoes",
-    image: shoe1,
-    price: 3500,
-    rating: 4.6,
-    description: "These are shoes made of leather.",
-  }
-];
-
+import { useState,useEffect } from 'react';
+import axios from 'axios';
 function Man_Display() {
+  const [man_display, setManDisplay] = useState([]);
+  useEffect(() => {
+    axios
+            .get("http://localhost:3500/inventory")
+            .then((response) => {
+                
+                // Filter safely: trim and convert to lowercase
+                const filtered = response.data.filter(
+                    (item) =>
+                        item.category &&
+                        item.category === "Men"
+                );
+
+
+                setManDisplay(filtered);
+               
+            })
+            .catch((err) => {
+                console.error("Error fetching electronics:", err);
+                
+            })
+    // Fetch data for man_display here and update state
+  }, []);
   return (
     <Swiper
       modules={[Navigation, Pagination, Autoplay]} // Enable the modules
@@ -86,7 +61,7 @@ function Man_Display() {
               Brand: {slide.name}
             </Typography>
             <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>
-              Price: {slide.price}
+              Price: ${slide.price}
             </Typography>
             <br />
            

@@ -1,156 +1,144 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
-import { Typography, Box } from "@mui/material";
-import all_in_one from "../../assets/Images/home_furniture/all_in_one.png";
-import dining_table from "../../assets/Images/home_furniture/dinner_table.png";
-import sofa from "../../assets/Images/home_furniture/sofa1.png";
-import sofacurtain from "../../assets/Images/home_furniture/sofa_curtains.png";
-import permus from "../../assets/Images/home_furniture/phermus.png";
-import bed1 from "../../assets/Images/home_furniture/bed1.png";
-import bed2 from "../../assets/Images/home_furniture/bed2.jpg";
+import React, { useEffect, useState } from "react";
+import { Box, Typography, CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-const display_furnitures = [
-    {
-        id: 1,
-        image: permus,
-        brand: "Puma",
-        description: "This is the new product from Timus",
-        price: '$180'
-    },
-    {
-        id: 2,
-        image: all_in_one,
-        brand: "Timus",
-        description: "This is the new product from Timus",
-        price: '$900'
-    },
-    {
-        id: 3,
-        image: sofa,
-        brand: "Louis Vuitton",
-        description: "This is the new product from Louis Vuitton",
-        price: '$520'
-    },
-    {
-        id: 4,
-        image: sofacurtain,
-        brand: "Baressa",
-        description: "This is the new product from Barressa",
-        price: '$600'
-    },
-    {
-        id: 6,
-        image: bed1,
-        brand: "Dileux",
-        description: "This is the new product from Baressa",
-        price: '$210'
-    },
-    {
-        id: 7,
-        image: bed2,
-        brand: "Baressa",
-        description: "This is the new product from Baressa",
-        price: '$250'
-    },
-    {
-        id: 8,
-        image: dining_table,
-        brand: "Dileux",
-        description: "This is the new product from dileux",
-        price: '$100'
-    }
-];
-export default function Kid_Details() {
+import axios from "axios";
+
+export default function Furniture_Detail() {
+    const [electronics, setElectronics] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
     const navigate = useNavigate();
+
     const handleCardClick = (id) => {
         navigate(`/furnitures-collections/${id}`);
     };
 
+    useEffect(() => {
+        axios
+            .get("http://localhost:3500/inventory")
+            .then((response) => {
+              
+
+                const filtered = response.data.filter(
+                    (item) => item.category && item.category === "Furniture"
+                );
+
+                setElectronics(filtered);
+                setError(false);
+            })
+            .catch((err) => {
+                console.error("Error fetching electronics:", err);
+                setError(true);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, []);
+
+    // Loading
+    if (loading) {
+        return (
+            <Box display="flex" justifyContent="center" mt={5}>
+                <CircularProgress />
+            </Box>
+        );
+    }
+
+    // Error
+    if (error) {
+        return (
+            <Typography textAlign="center" mt={5} color="error">
+                Failed to load electronics data.
+            </Typography>
+        );
+    }
+
+    // No data
+    if (electronics.length === 0) {
+        return (
+            <Typography textAlign="center" mt={5}>
+                No Electronic items found.
+            </Typography>
+        );
+    }
+
+    // Display all items
     return (
         <Box
             sx={{
                 width: "100%",
-                maxWidth: "1200px",
+                maxWidth: "1400px",
                 margin: "auto",
                 paddingTop: 4,
                 paddingBottom: 4,
-
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+                gap: 3,
             }}
         >
-            <br /> <br />
-            <Swiper
-                modules={[Navigation, Pagination]}
-                spaceBetween={20}
-                slidesPerView={1}
-                navigation
-                pagination={{ clickable: true }}
-                breakpoints={{
-                    600: { slidesPerView: 2 },
-                    960: { slidesPerView: 3 },
-                    1280: { slidesPerView: 4 }, // This ensures 4 images per slide on large screens
-                }}
-            >
-                {
-                    display_furnitures.map((item) => (
-                        <SwiperSlide key={item.id}>
-                            <Box
-                                onClick={() => handleCardClick(item.id)}
-                                sx={{
-                                    cursor: "pointer",
-                                    transition: "0.3s",
-                                    "&:hover": {
-                                        boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.2)",
-                                        transform: "scale(1.02)",
-                                    },
-                                    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-                                    borderRadius: 2,
-                                    overflow: "hidden",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    alignItems: "center",
-                                    padding: 2,
-                                    backgroundColor: "#fff",
-                                    height: "100%",
-                                }}
-                            >
-                                <img
-                                    src={item.image}
-                                    alt={item.name}
-                                    style={{
-                                        width: "100%",
-                                        height: "180px",
-                                        objectFit: "contain",
-                                    }}
-                                />
-                                <Typography
-                                    variant="body2"
-                                    fontWeight="bold"
-                                    textAlign="center"
-                                    mt={1}
-                                >
-                                    Description: {item.description}
-                                </Typography>
-                                <Typography
-                                    variant="body2"
-                                    fontWeight="bold"
-                                    textAlign="center"
-                                >
-                                    {item.name}
-                                </Typography>
-                                <Typography
-                                    variant="body2"
-                                    fontWeight="bold"
-                                    textAlign="center"
-                                    mb={2}
-                                >
-                                    Price: ${item.price}
-                                </Typography>
-                            </Box>
-                        </SwiperSlide>
-                    ))
-                }
-            </Swiper>
+            {electronics.map((item) => (
+                <Box
+                    key={item.idno}
+                    onClick={() => handleCardClick(item.idno)}
+                    sx={{
+                        cursor: "pointer",
+                        transition: "0.3s ease",
+                        "&:hover": {
+                            transform: "scale(1.02)",
+                            boxShadow: "0px 6px 16px rgba(0,0,0,0.25)",
+                        },
+                        boxShadow: "0px 4px 10px rgba(0,0,0,0.15)",
+                        borderRadius: "12px",
+                        padding: 2,
+                        backgroundColor: "#fff",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                    }}
+                >
+                    <img
+                        src={item.image}
+                        alt={item.name}
+                        style={{
+                            width: "80%",
+                            height: "200px",
+                            objectFit: "contain",
+                            marginBottom: "15px",
+                        }}
+                    />
+
+                    <Typography
+                        variant="h6"
+                        sx={{ fontWeight: "bold", textAlign: "center" }}
+                    >
+                        {item.name}
+                    </Typography>
+
+                    <Typography
+                        variant="body2"
+                        sx={{ textAlign: "center", color: "#555", marginTop: "5px" }}
+                    >
+                        {item.description}
+                    </Typography>
+
+                    <Typography
+                        variant="h6"
+                        sx={{
+                            fontWeight: "bold",
+                            textAlign: "center",
+                            color: "#333",
+                            background: "#f7f7f7",
+                            width: "100%",
+                            padding: "8px 0",
+                            borderRadius: "10px",
+                            border: "1px solid #e0e0e0",
+                        }}
+                    >
+                        ${item.price}
+                    </Typography>
+                </Box>
+            ))}
         </Box>
     );
 }

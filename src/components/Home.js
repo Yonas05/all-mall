@@ -34,7 +34,7 @@ function Home() {
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" sx={{ paddingLeft: "20%", fontWeight: "bold" }} component="div">Man</Typography>
                                     <ManDisplay />
-                                    <Typography variant="body2" color="text.secondary">List on man category will be displayed here</Typography>
+                                  
                                 </CardContent>
                             </Card>
                         </Link>
@@ -47,7 +47,7 @@ function Home() {
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">Women</Typography>
                                     <WomenDisplay />
-                                    <Typography variant="body2" color="text.secondary">List of women category will be displayed here.</Typography>
+                                
                                 </CardContent>
                             </Card>
                         </Link>
@@ -60,7 +60,7 @@ function Home() {
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">Electronic</Typography>
                                     <DisplayElectronic />
-                                    <Typography variant="body2" color="text.secondary">Electronic items will be displayed here.</Typography>
+                                    
                                 </CardContent>
                             </Card>
                         </Link>
@@ -76,7 +76,7 @@ function Home() {
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">Kids</Typography>
                                     <KidDisplay />
-                                    <Typography variant="body2" color="text.secondary">Kids products will be displayed here.</Typography>
+                                    
                                 </CardContent>
                             </Card>
                         </Link>
@@ -84,12 +84,12 @@ function Home() {
 
                     {/* Home & Furniture Card */}
                     <Grid item xs={12} sm={8} md={6} lg={4}>
-                        <Link to="/furniture-collections" style={{ textDecoration: 'none' }}>
+                        <Link to="/furnitures-collections" style={{ textDecoration: 'none' }}>
                             <Card sx={{ width: '100%' }}>
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">Home and Furniture</Typography>
                                     <HomeDisplay />
-                                    <Typography variant="body2" color="text.secondary">List of Home and Furniture items will be displayed here.</Typography>
+                                  
                                 </CardContent>
                             </Card>
                         </Link>
@@ -102,7 +102,7 @@ function Home() {
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">Pets</Typography>
                                     <PetDisplay />
-                                    <Typography variant="body2" color="text.secondary">Pet products will be displayed here.</Typography>
+                                   
                                 </CardContent>
                             </Card>
                         </Link>

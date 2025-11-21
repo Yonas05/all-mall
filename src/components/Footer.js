@@ -8,7 +8,7 @@ const Footer = () => {
         <Box
             component="footer"
             sx={{
-                position: "fixed",  // Fixes the footer to the bottom
+                marginTop:'15%',// Fixes the footer to the bottom
                 bottom: 0,
                 left: 0,
                 width: "100%",  // Ensure the footer spans the entire width

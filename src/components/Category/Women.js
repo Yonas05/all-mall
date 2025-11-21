@@ -1,110 +1,121 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation, Pagination, Autoplay } from "swiper/modules"
-import { Typography, Box } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Typography, Box, CircularProgress } from "@mui/material";
+import axios from "axios";
 
-import w_tshirt from '../../assets/Images/women/bag.png'
-import w_complete from '../../assets/Images/women/complete.png'
-import w_jacket from '../../assets/Images/women/jacket.png'
-import w_shoe from '../../assets/Images/women/women-sneaker.png'
-import w_bag from '../../assets/Images/women/sweater.png'
+function Electronics_Display() {
+    const [electronics, setElectronics] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
-const women_display = [
-    {
-        id: 1,
-        image: w_tshirt,
-        brand: "Puma",
-        description: "This is the new product from Puma",
-        price: '$100'
-    },
-    {
-        id: 2,
-        image: w_complete,
-        brand: "Gucci",
-        description: "This is the new product from Gucci",
-        price: '$200'
-    },
-    {
-        id: 3,
-        image: w_jacket,
-        brand: "Louis Vuitton",
-        description: "This is the new product from Louis Vuitton",
-        price: '$1520'
-    },
-    {
-        id: 4,
-        image: w_shoe,
-        brand: "Adidas",
-        description: "This is the new product from Adidas",
-        price: '$600'
-    },
-    {
-        id: 5,
-        image: w_bag,
-        brand: "Nike",
-        description: "This is the new product from Nike",
-        price: '$100'
+    useEffect(() => {
+        axios
+            .get("http://localhost:3500/inventory")
+            .then((response) => {
+                console.log("Full API Data:", response.data);
+
+                // Filter safely: trim and convert to lowercase
+                const filtered = response.data.filter(
+                    (item) =>
+                        item.category &&
+                        item.category === "Women"
+                );
+
+                
+                setElectronics(filtered);
+                setError(false);
+            })
+            .catch((err) => {
+                console.error("Error fetching electronics:", err);
+                setError(true);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, []);
+
+    if (loading) {
+        return (
+            <Box display="flex" justifyContent="center" mt={5}>
+                <CircularProgress />
+            </Box>
+        );
     }
-];
 
-function Women_Display() {
+    if (error) {
+        return (
+            <Typography textAlign="center" mt={5} color="error">
+                Failed to load electronics data.
+            </Typography>
+        );
+    }
+
+    if (electronics.length === 0) {
+        return (
+            <Typography textAlign="center" mt={5}>
+                No Electronic items found.
+            </Typography>
+        );
+    }
+
     return (
         <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            Pagination={{ clickable: true }}
-            loop
-            autoplay={{ delay: 3000, disableOnInteraction: true }}
+            modules={[Navigation, Pagination, Autoplay]} // Enable the modules
+            pagination={{ clickable: true }} // Enable pagination
+            loop // Enable infinite loop
+            autoplay={{ delay: 3000, disableOnInteraction: true }} // Enable autoplay with a 3-second delay
             style={{ marginBottom: "20px" }}
         >
-            {women_display.map((slide) => (
-                <SwiperSlide key={slide.id}>
-                    <Box sx={{
-                        width: "100%",
-                        height: "400px",
-                        position: "relative",
-                        overflow: "hidden",
-                    }}>
-                        <img src={slide.image} alt={slide.description}
+            {electronics.map((item) => (
+                <SwiperSlide key={item._id}>
+                    <Box
+                        sx={{
+                            width: "100%",
+                            height: "400px",
+                            overflow: "hidden",
+                            padding: 2,
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                        }}
+                    >
+                        <img
+                            src={item.image}
+                            alt={item.description}
                             style={{
                                 width: "80%",
                                 height: "200px",
                                 objectFit: "contain",
-                                margin: "auto",
-                            }} />
-                        <Typography
-                            variant="h6"
-                            sx={{
-                                fontWeight: "bold",
-                                textAlign: "center"
-                            }}>
-                            Description: {slide.description}
-                        </Typography>
-                        <Typography
-                            variant="h6"
-                            sx={{
-                                fontWeight: "bold",
-                                textAlign: "center"
-                            }}>
-                            Brand: {slide.name}
-                        </Typography>
-                        <Typography
-                            variant="h6"
-                            sx={{
-                                fontWeight: "bold",
-                                textAlign: "center"
-                            }}>
-                            Price: {slide.price}
-                        </Typography>
-                        <br />
+                                marginBottom: "15px",
+                            }}
+                        />
 
+                        <Typography
+                            variant="h6"
+                            sx={{ fontWeight: "bold", textAlign: "center" }}
+                        >
+                            {item.name}
+                        </Typography>
+
+                        <Typography
+                            variant="body1"
+                            sx={{ textAlign: "center", color: "#555" }}
+                        >
+                            {item.description}
+                        </Typography>
+
+                        <Typography
+                            variant="h6"
+                            sx={{ fontWeight: "bold", textAlign: "center", marginTop: 1 }}
+                        >
+                            ${item.price}
+                        </Typography>
                     </Box>
-
                 </SwiperSlide>
-
             ))}
-
         </Swiper>
-    )
+    );
 }
 
-export default Women_Display;
+export default Electronics_Display;

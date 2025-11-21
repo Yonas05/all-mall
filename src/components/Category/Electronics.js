@@ -1,97 +1,120 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { Typography,Box } from "@mui/material";
+import { Typography, Box, CircularProgress } from "@mui/material";
+import axios from "axios";
 
-import televison from "../../assets/Images/electronics/television.png";
-import iphone from "../../assets/Images/electronics/Iphone.png";
-import samsung from "../../assets/Images/electronics/samsung.png";
-import earphone from "../../assets/Images/electronics/earphone.png";
-import headphone from "../../assets/Images/electronics/headphone.png";
-
-
-const display_electronics = [
-
-    {
-        id: 2,
-        image: televison,
-        brand: "Samsung",
-        description: "This is the new product from Samsung",
-        price: '$200'
-    },
-    {
-        id: 3,
-        image: iphone,
-        brand: "Apple",
-        description: "This is the new product from Apple",
-        price: '$1520'
-    },
-    {
-        id: 4,
-        image: samsung,
-        brand: "Samsung",
-        description: "This is the new product from Samsung",
-        price: '$600'
-    },
-    {
-        id: 5,
-        image: earphone,
-        brand: "Apple",
-        description: "This is the new product from Apple",
-        price: '$100'
-    },
-    {
-        id: 6,
-        image: headphone,
-        brand: "Sony",
-        description: "This is the new product from Sony",
-        price: '$150',
-    },
-];
 function Electronics_Display() {
+    const [electronics, setElectronics] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        axios
+            .get("http://localhost:3500/inventory")
+            .then((response) => {
+                console.log("Full API Data:", response.data);
+
+                // Filter safely: trim and convert to lowercase
+                const filtered = response.data.filter(
+                    (item) =>
+                        item.category &&
+                        item.category === "Electronic"
+                );
+          
+             setElectronics(filtered);
+                setError(false);
+            })
+            .catch((err) => {
+                console.error("Error fetching electronics:", err);
+                setError(true);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, []);
+
+    if (loading) {
+        return (
+            <Box display="flex" justifyContent="center" mt={5}>
+                <CircularProgress />
+            </Box>
+        );
+    }
+
+    if (error) {
+        return (
+            <Typography textAlign="center" mt={5} color="error">
+                Failed to load electronics data.
+            </Typography>
+        );
+    }
+
+    if (electronics.length === 0) {
+        return (
+            <Typography textAlign="center" mt={5}>
+                No Electronic items found.
+            </Typography>
+        );
+    }
+
     return (
-        <Swiper modules={[Navigation, Pagination, Autoplay]}
-            pagination={{ clickable: true }}
-            loop
-            autoplay={{ delay: 3000, disableOnInteraction: true }}
-            style={{ marginBottom: "20px" }}>
-            {
-                display_electronics.map((slide) => (
-                    <SwiperSlide key={slide.id}>
-                        <Box sx={{
+        <Swiper
+            modules={[Navigation, Pagination, Autoplay]} // Enable the modules
+            pagination={{ clickable: true }} // Enable pagination
+            loop // Enable infinite loop
+            autoplay={{ delay: 3000, disableOnInteraction: true }} // Enable autoplay with a 3-second delay
+            style={{ marginBottom: "20px" }}
+        >
+            {electronics.map((item) => (
+                <SwiperSlide key={item._id}>
+                    <Box
+                        sx={{
                             width: "100%",
                             height: "400px",
-                            position: "relative",
                             overflow: "hidden",
-                        }}>
-                            <img src={slide.image} alt={slide.description}
-                                style={{
-                                    width: "80%",
-                                    height: "200px",
-                                    objectFit: "contain",
-                                    margin: "auto",
-                                }} />
-                            <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>
-                                Description: {slide.description}
-                            </Typography>
-                            <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>
-                                Brand: {slide.name}
-                            </Typography>
-                            <Typography variant="h6" sx={{ fontWeight: "bold", textAlign: "center" }}>
-                                Price: {slide.price}
-                            </Typography>
-                            <br />
-                    
-                        </Box>
+                            padding: 2,
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                        }}
+                    >
+                        <img
+                            src={item.image}
+                            alt={item.description}
+                            style={{
+                                width: "80%",
+                                height: "200px",
+                                objectFit: "contain",
+                                marginBottom: "15px",
+                            }}
+                        />
 
-                    </SwiperSlide>
+                        <Typography
+                            variant="h6"
+                            sx={{ fontWeight: "bold", textAlign: "center" }}
+                        >
+                            {item.name}
+                        </Typography>
 
+                        <Typography
+                            variant="body1"
+                            sx={{ textAlign: "center", color: "#555" }}
+                        >
+                            {item.description}
+                        </Typography>
 
-                ))}
-
+                        <Typography
+                            variant="h6"
+                            sx={{ fontWeight: "bold", textAlign: "center", marginTop: 1 }}
+                        >
+                            ${item.price}
+                        </Typography>
+                    </Box>
+                </SwiperSlide>
+            ))}
         </Swiper>
-    )
-
-
+    );
 }
+
 export default Electronics_Display;
