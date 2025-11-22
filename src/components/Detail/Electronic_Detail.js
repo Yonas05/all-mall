@@ -119,7 +119,7 @@ export default function Electronic_Detail() {
                         variant="body2"
                         sx={{ textAlign: "center", color: "#555", marginTop: "5px" }}
                     >
-                        {item.description}
+                        {item.description +" Yonas Fayea"}
                     </Typography>
 
                     <Typography
