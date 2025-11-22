@@ -45,7 +45,7 @@ function Home() {
                         <Link to="/women-collections" style={{ textDecoration: 'none' }}>
                             <Card sx={{ width: '100%' }}>
                                 <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">Women is women</Typography>
+                                    <Typography gutterBottom variant="h5" component="div">Women</Typography>
                                     <WomenDisplay />
                                 
                                 </CardContent>
