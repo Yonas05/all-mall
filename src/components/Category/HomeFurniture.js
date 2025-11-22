@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { Typography, Box, CircularProgress } from "@mui/material";
 import axios from "axios";
-import Home from "../Home";
 
 function HomeFurniture() {
     const [furniture, setFurniture] = useState([]);
